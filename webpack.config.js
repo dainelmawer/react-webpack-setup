@@ -1,5 +1,7 @@
+const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
     entry: './src/index.js',
@@ -8,7 +10,8 @@ module.exports = {
         host: 'localhost',
         port: 8080,
         historyApiFallback: true,
-        open: true
+        open: true,
+        contentBase: './dist',
     },
     mode: 'development',
     module: {
@@ -34,12 +37,15 @@ module.exports = {
         ]
     },
     output: {
-        filename: 'bundle.[hash].js'
+        filename: '[name].bundle.js',
+        path: path.resolve(__dirname, 'dist'),
     },
     plugins: [
+        new CleanWebpackPlugin(['dist']),
         new HtmlWebpackPlugin({
             template: 'public/index.html',
-            favicon: 'public/favicon.ico'
+            favicon: 'public/favicon.ico',
+            title: 'React, Webpack Setup',
         })
     ]
 }
