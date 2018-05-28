@@ -38,13 +38,13 @@ module.exports = {
     },
     output: {
         filename: '[name].bundle.js',
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve(__dirname, 'public'),
     },
     plugins: [
-        new CleanWebpackPlugin(['dist']),
+        new CleanWebpackPlugin(['public']),
         new HtmlWebpackPlugin({
-            template: 'public/index.html',
-            favicon: 'public/favicon.ico',
+            template: 'src/index.html',
+            favicon: 'assets/favicon.ico',
             title: 'React, Webpack Setup',
         })
     ]
