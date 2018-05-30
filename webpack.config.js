@@ -5,12 +5,8 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
     entry: './src/index.js',
-    devtools: 'inline-source-map',
+    devtool: 'inline-source-map',
     devServer: {
-        host: 'localhost',
-        port: 8080,
-        historyApiFallback: true,
-        open: true,
         contentBase: './dist',
     },
     mode: 'development',
@@ -38,10 +34,11 @@ module.exports = {
     },
     output: {
         filename: '[name].bundle.js',
-        path: path.resolve(__dirname, 'public'),
+        path: path.resolve(__dirname, 'dist'),
+        publicPath: '/'
     },
     plugins: [
-        new CleanWebpackPlugin(['public']),
+        new CleanWebpackPlugin(['dist']),
         new HtmlWebpackPlugin({
             template: 'src/index.html',
             favicon: 'assets/favicon.ico',
